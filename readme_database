@@ -1,0 +1,75 @@
+The current database creation commands:
+
+Some useful database commands:
+mysql> create database `sot`;
+mysql> create user 'sot'@'localhost' identified by 'sot';
+Can also use: mysql> set password for 'sot'@'localhost' = PASSWORD('sot');
+mysql> use sot
+mysql> GRANT ALL PRIVILEGES ON `sot`.* TO 'sot'@'localhost';
+mysql> show grants for 'sot-dev'@'localhost';
+mysql> REVOKE ALL PRIVILEGES ON `sot-dev`.* FROM 'sot'@'localhost';
+mysql> exit;
+$ mysql -u sot -p sot < unix-sot.2013-11-06
+
+scp sdcle1vuo01:/srv/nas/umo-unix/backup/sot-db.<date_time>.gz .
+
+#--------------------------------------------
+# show create table servers;
+
+ALTER TABLE servers MODIFY COLUMN `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+ALTER TABLE servers MODIFY COLUMN `name` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `fqdn` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `alias` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `ip` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `network_loc` varchar(255) NOT NULL DEFAULT 'DIN';
+ALTER TABLE servers MODIFY COLUMN `env` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `cluster` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `status` enum('prod','build','nonprod','decom') NOT NULL DEFAULT 'build';
+ALTER TABLE servers MODIFY COLUMN `os` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `cat` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `type` enum('Virtual','Physical','GlobalZone','Cluster') NOT NULL DEFAULT 'Virtual';
+ALTER TABLE servers MODIFY COLUMN `physhost` varchar(255) NOT NULL DEFAULT 'VMware';
+ALTER TABLE servers MODIFY COLUMN `location` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `hardware` enum('IBM','Sun','VMware','Cyclades','Del','Not_Listed','TBA') NOT NULL DEFAULT 'VMware';
+ALTER TABLE servers MODIFY COLUMN `model` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `serial` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `cpu_count` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `ram` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `local_disk` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `san_disk` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `hw_support` enum('','UMO','UMO-UNIX','WMO','Unisys','SGS') NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `os_support` enum('UMO','UMO-UNIX','WMO','Unisys','SGS') NOT NULL DEFAULT 'WMO';
+ALTER TABLE servers MODIFY COLUMN `it_support` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `bus_owner` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `workload` varchar(1023) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `notes` varchar(4095) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `ci_mgr` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `ci_os` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE servers MODIFY COLUMN `ci_hw` varchar(255) NOT NULL DEFAULT '';
+
+#--------------------------------------------
+# show create table users;
+
+ALTER TABLE users MODIFY COLUMN  `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+ALTER TABLE users MODIFY COLUMN  `name` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE users MODIFY COLUMN  `uid` int(12) NOT NULL;
+ALTER TABLE users MODIFY COLUMN  `gecos` varchar(255) DEFAULT '';
+ALTER TABLE users MODIFY COLUMN  `department` varchar(255) DEFAULT '';
+ALTER TABLE users MODIFY COLUMN  `shell` varchar(255) DEFAULT '/bin/bash';
+ALTER TABLE users MODIFY COLUMN  `pgroup` varchar(255) DEFAULT 'users';
+ALTER TABLE users MODIFY COLUMN  `sgroup` varchar(1023) DEFAULT '';
+ALTER TABLE users MODIFY COLUMN  `id_rsa_pub` varchar(4096) DEFAULT '';
+ALTER TABLE users MODIFY COLUMN  `system` enum('Yes','No') DEFAULT 'No';
+ALTER TABLE users MODIFY COLUMN  `status` enum('Active','Locked','Left') DEFAULT 'Active';
+
+#---------------------------------------------------------------------------
+# show create table groups;
+
+ALTER TABLE groups MODIFY COLUMN  `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+ALTER TABLE groups MODIFY COLUMN  `name` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE groups MODIFY COLUMN  `lin_gid` int(12) NOT NULL;
+ALTER TABLE groups MODIFY COLUMN  `aix_gid` int(12) NOT NULL;
+ALTER TABLE groups MODIFY COLUMN  `system_group` enum('Yes','No') DEFAULT 'No';
+ALTER TABLE groups MODIFY COLUMN  `status` enum('Active','Locked','Incative') DEFAULT 'Active';
+
+#--------------------------------------------

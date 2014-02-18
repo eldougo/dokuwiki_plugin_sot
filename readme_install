@@ -1,0 +1,97 @@
+INSTALL
+
+This plugin works best with the Vector template.
+
+Create a clean RHEL 6 VI with a static IP address
+Install PHP and MySQL
+# yum install perl perl-DBI.x86_64 perl-CPAN.x86_64
+# yum install "perl(DBD::mysql)" perl-DateTime
+# yum install mysql-server mysql php php-mbstring
+# perl -MCPAN -e shell
+cpan> install YAML
+cpan> install CPAN
+cpan> reload cpan
+cpan> install DBI
+cpan> install DBD::mysql
+# sudo groupadd -g 666 umoadmin
+# groupadd -g 23 collect
+# useradd -u 2010 -g collect -m -s /bin/bash -c "Fido Admin Account" fido
+# cd /usr/local
+# mkdir admin
+# chown fido:collect admin
+# service mysqld start
+# chkconfig mysqld on
+# mysqladmin -u root password '2f0rg0t'
+# mysql -u root -p
+mysql> create database `sot`;
+mysql> create user 'sot'@'localhost' identified by 'password';
+Can also use mysql> set password for 'sot'@'localhost' = PASSWORD('password');
+mysql> use sot
+mysql> GRANT ALL PRIVILEGES ON `sot`.* TO 'sot'@'localhost';
+mysql> exit;
+$ mysql -u sot -p sot < unix-sot.2013-11-06
+
+# yum groupinstall web-server
+# chkconfig httpd on
+# vi /etc/httpd/conf/httpd.conf
+ServerName sot.skruff.org:80
+
+# vi /etc/hosts
+
+Update Sudoers and set "Defaults !requiretty"
+
+# yum install mod_perl
+
+Check logs in /var/log/httpd/
+
+Turn off selinux. setenforce 0
+
+#----------------------------------------------------------------------------------------------
+Add the following code to {wiki-home}/lib/tpl/vector/user/tabs.php
+
+#----------------------------------------------------------------------------------------------
+function Is_Current_Page($pPage){
+    global $INPUT;
+    return $pPage == $INPUT->str('id')?"selected":null;
+}
+
+unset($_vector_tabs_left["ca-nstab-main"]);
+unset($_vector_tabs_right["ca-view"]);
+
+$_vector_tabs_left["sot-tab-home"]["text"]          = "Home";
+$_vector_tabs_left["sot-tab-home"]["wiki"]          = ":start";
+$_vector_tabs_left["sot-tab-home"]["class"]         = Is_Current_Page("start")
+                                                    .Is_Current_Page("");
+$_vector_tabs_left["sot-tab-home"]["accesskey"]     = "H";
+
+$_vector_tabs_left["sot-tab-report"]["text"]        = "Reports";
+$_vector_tabs_left["sot-tab-report"]["wiki"]        = ":sot:sot_reports";
+$_vector_tabs_left["sot-tab-report"]["class"]       = Is_Current_Page("sot:sot_reports")
+                                                    .Is_Current_Page("sot:report");
+$_vector_tabs_left["sot-tab-report"]["accesskey"]   = "R";
+
+$_vector_tabs_left["sot-tab-search"]["text"]        = "Search";
+$_vector_tabs_left["sot-tab-search"]["wiki"]        = ":sot:search";
+$_vector_tabs_left["sot-tab-search"]["class"]       = Is_Current_Page("sot:search");
+$_vector_tabs_left["sot-tab-search"]["accesskey"]   = "S";
+
+$_vector_tabs_left["sot-tab-new"]["text"]           = "New";
+$_vector_tabs_left["sot-tab-new"]["wiki"]           = ":sot:new_ci_templates";
+$_vector_tabs_left["sot-tab-new"]["class"]          = Is_Current_Page("sot:new_ci_templates")
+                                                    .Is_Current_Page("sot:new_ci");
+$_vector_tabs_left["sot-tab-new"]["accesskey"]      = "N";
+
+#----------------------------------------------------------------------------------------------
+
+Add the following code to {wiki-home}/lib/tpl/vector/user/buttons.php
+#----------------------------------------------------------------------------------------------
+unset($_vector_btns["rss"]);
+unset($_vector_btns["vecfdw"]);
+unset($_vector_btns["qrcode"]);
+unset($_vector_btns["dw"]);
+#----------------------------------------------------------------------------------------------
+
+Comment out some buggy code in the Vector Template:
+
+Comment out line124 of {wiki-home}/liv/tpl/vector/conf/boxes.php
+Replace with "if(FALSE){"

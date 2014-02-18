@@ -1,0 +1,126 @@
+INSTALL
+
+This plugin works best with the Vector template.
+
+
+
+----------------------------------------------------------------------------------------------
+LOG
+
+**DONE**
+Rewrite the whole program starting from modular common functions and database access. Use the
+record IDs instead of the CI names to pass CIs between pages. Dokuwiki already uses form data
+"id" so it will need to be passed as "ci_id".
+
+**DONE**
+Create a meta_data table to store meta info instead of using the comments field in table's
+information_schema entry. The metadata keys are all formatted as key value pairs. The following
+field metadata keys should be in the schema:
+	primary_key This field is the primary identifier for each CI.
+	hide		Do not display this field, eg: the id field.
+	mandatory   This field is a mandatory field and must be filled in.
+	mandatory_text The error text to display explaining why this field is mandatory.
+	numeric		Field value must be numeric.
+	input		How to display this field [text|list|large|enum]. Default is 'text'.
+	no_modify	This field will be displayed but cannot be modified.
+	uniqueness	The number of times this value can appear in the database.
+	unique_text	Error text if count > uniqueness
+	displaymode	If set to 'apps', this field will be shown in the apps editing modes.
+				If set to 'comment', this field will be shown in the comments adding modes.
+				If not set, this field will be displayed only in the CI editing mode which can
+				only be accessed by users in the admin group or in the editor group.
+	ci_owner    This field lists the group of members who can modify this CI.
+	appseditor	This field can be modified by users in the <value> group. Not used in the SoT yet.
+	appgroup	This field can be modified by users in the group listed in the <value> field.
+	search_type	This field can be used to search on using the <value> method [like|regexp|eq|no]
+				Where the default is 'eq' (key=val) and 'no' is not available to search on.
+	nosearch    This field cannot be searched on and will not be displayed in the search form.
+	comment     This text will appear in the field's description on the input forms and the Field
+	            Description form.
+    enter_once  Clear this field's input after a successful CI insertion to prevent accidental
+                re-entry attempt.
+    edit_once   Clear this field's input after a successful CI edit.
+    orientation If set to 'vert', CI records will be displayed vertically in the reports page.
+    autosearch  Automatically search for the first vacant number starting from this value.
+
+The following table metadata keys should be in the schema:
+	add_field	Append this field to the printed table fields. Use for the comments field.
+				Table field metadata will be used exactly like a normal table field.
+
+**DONE**
+Add a meta field for UIDs etc that will offer the next vacant if the value given is blank
+or a duplicate. Error out with a red box warning stating that the next vacant UID has has has
+been put in the UID field allowing the user to confirm. Add a metadata token for a default 
+starting value if blank. Perhaps hilight the field in yellow and use an info message instead.
+
+**DONE**
+**BUG**
+When user has permissions revoked while editing a CI, he can still change non-mandatory fields. This
+indicates a weakness that can be exploited from the address params.
+
+**TODO**
+conf/sot_metadata.php is the default, but if user/sot_metadata.php exists, use that instead.
+
+**DONE**
+Remove links from the Admin page. They belong in metadata.
+
+**TODO**
+Add non mandatory list boxes (meta input=list) that lists values that are currently in the database
+for that field but enable new values to be entered. This will help keep consistency for fields like
+os and cat etc.
+
+**DONE**
+Put the super user group list in the admin page.
+Put a full screen option for reports in the Admin page.
+
+**DONE**
+Select GMT or LMT timestamps in the admin page.
+
+**TODO**
+Allow the user to select the type of search in the search form. '=', 'regex()', 'like()', etc.
+
+**TODO**
+Have an advanced search function allowing the user to create their own SQL query. Devise
+a way to filter out insert and update queries and SQL escape sequences.
+
+**TODO**
+Consider adding an IP table. Look into slurping up all dns dumps from windows and unix and sgs.
+Never remove ips, mark them as released.
+
+**TODO**
+Set up a DNS name and use named based hosting for the SoT.
+
+**Form design:
+- set db
+- get metadata array
+- get table field array
+- if submit
+    - check input
+    - action
+    - if success
+        - set approporiate nav links
+        - set success headings
+        - other success actions
+    - else if fail
+        - set approporiate nav links
+        - set error headings
+        - other fail actions
+- write top nav links
+- write page heading
+- write input form heading
+- write groups
+- write input form
+
+**Main $SOT datatype:
+$SOT[CI_ID]             = $INPUT->str('ci_id', "0");
+$SOT[TabType]           = strtolower($INPUT->str('tabtype', "server"));
+$SOT[CiName]            = $INPUT->str('name');
+$SOT[DatabaseObject]    = new Sot_Database;
+$SOT[FieldMetaArray]    = $SOT[DatabaseObject]->Get_Metadata_Array($SOT[TabType]."s");
+$SOT[TableFieldsArray]  = $SOT[DatabaseObject]->Get_Table_Field_Details($SOT[TabType]."s");
+$SOT[HilightArray]      = array();
+$SOT[FoundArray]        = array();
+$SOT[CurrentCiArray]    = array();
+
+
+

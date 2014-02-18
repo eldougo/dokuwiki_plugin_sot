@@ -1,0 +1,7 @@
+base   sot
+author Doug Burner
+email  doug.869@gmail.com
+date   2014-02-19
+name   SoT Web Portal
+desc   A web portal to the UMO-UNIX SoT database
+url    http://sdcle1vuo01/sot
