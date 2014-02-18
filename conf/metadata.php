@@ -2,7 +2,7 @@
 /**
  * Options for the sot plugin
  *
- * @author Doug Burner <doug.869@gmail.com>
+ * @author Doug Burner <doug869@users.noreply.github.com>
  */
 
 $meta['_sot_misc']		       = array('fieldset');

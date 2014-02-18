@@ -5,7 +5,7 @@
  *
  * Load from anywhere with "include_once SOT_LIB.'form_report.php';"
  *
- * @author  Doug Burner <doug.869@gmail.com> 2013-12-18
+ * @author  Doug Burner <doug869@users.noreply.github.com> 2013-12-18
  *
  */
 

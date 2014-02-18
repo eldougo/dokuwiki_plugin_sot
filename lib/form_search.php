@@ -1,6 +1,6 @@
 <?php
 /**
- * Doug Burner <doug.869@gmail.com> 18/12/2013
+ * Doug Burner <doug869@users.noreply.github.com> 18/12/2013
  * Generate a form allowing users to add a new CI to the SoT
  * Parameters:
  *			tabtype - Report type, can be "server", "user" or "group". Defaults to "server".

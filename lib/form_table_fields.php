@@ -3,7 +3,7 @@
  /**
  * Display table field descriptions.
  *
- * @author  Doug Burner <doug.869@gmail.com> 2013-12-05
+ * @author  Doug Burner <doug869@users.noreply.github.com> 2013-12-05
  *
  * @param   string  tabtype     Table type from form submit
  *

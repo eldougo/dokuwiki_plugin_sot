@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Doug Burner <doug.869@gmail.com> 05/01/2013
+ * Doug Burner <doug869@users.noreply.github.com> 05/01/2013
  * Place a link contining the passed link parameters to sotreport. You can escape pipes "|"
  * using a back slash "\|" to pass unmodified. You can also escape the ampersands "&" if you
  * want it to appear in the link text, but it is just as easy to use "%26".

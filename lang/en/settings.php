@@ -2,7 +2,7 @@
 /**
  * english language file
  *
- * @author     Doug Burner <doug.869@gmail.com>
+ * @author     Doug Burner <doug869@users.noreply.github.com>
  */
 
 $lang['full_screen_reports'] = 'Display SoT reports in full screen mode';

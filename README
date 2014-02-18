@@ -1,4 +1,8 @@
-INSTALL
+SoT DokuWiki plugin
+
+Doug Burner <doug869@users.noreply.github.com>
+
+SoT (Source of Truth) is a mini CMDB plugin that uses DokuWiki as the CMS.
 
 This plugin works best with the Vector template.
 

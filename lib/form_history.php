@@ -3,7 +3,7 @@
 /**
  * Display the history of the CI name and table type passed to the form.
  *
- * @author  Doug Burner <doug.869@gmail.com> 2014-01-18
+ * @author  Doug Burner <doug869@users.noreply.github.com> 2014-01-18
  *
  * @param   string  $INPUT->str('name')     The name of the CI.
  * @param   string  $INPUT->str('tabtype')  The table type of the CI. Can be server, user or group.

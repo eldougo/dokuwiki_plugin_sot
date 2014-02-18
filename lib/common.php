@@ -4,7 +4,7 @@
  * Common functions for the SoT Web Portal.
  * Load from anywhere with "include_once SOT_LIB.'common.php';"
  *
- * @author  Doug Burner <doug.869@gmail.com> 2014-01-18
+ * @author  Doug Burner <doug869@users.noreply.github.com> 2014-01-18
  *
  */
 

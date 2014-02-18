@@ -7,7 +7,7 @@
  * to allow "$this->getConf()" to work from the parent syntax class.
  * Load with "include_once SOT_LIB.'database.php';"
  *
- * @author  Doug Burner <doug.869@gmail.com>
+ * @author  Doug Burner <doug869@users.noreply.github.com>
  *
  */
 
@@ -122,7 +122,7 @@ class Sot_Database{
      * the first row being the column names unless $pQuiet is set to true.
      * Return format: array(assoc_array()), access by array_name[n][col_name]
      *
-     * @author  Doug Burner <doug.869@gmail.com>
+     * @author  Doug Burner <doug869@users.noreply.github.com>
      * @param   string  $pSqlQuery      The SQL query.
      * @param   bool    $pQuiet         Don't put field headings in array[0].
      * @param   string  &$vResult       Any error text, Empty of no error.
