@@ -53,10 +53,10 @@ class syntax_plugin_sot extends DokuWiki_Syntax_Plugin {
 	function getInfo() {
 		return array(	'author' 	=> 'Doug Burner',
 						'email'		=> 'doug869@users.noreply.github.com',
-						'date'		=> '2014-02-19',
+						'date'		=> '2014-02-20',
 						'name'		=> 'SoT Web Portal Plugin',
 						'desc'		=> 'A web portal to the UMO-UNIX SoT database',
-						'url'		=> 'http://sdcle1vuo01/sot');
+						'url'		=> 'https://github.com/doug869/dokuwiki_plugin_sot');
 	}
 
  	/**

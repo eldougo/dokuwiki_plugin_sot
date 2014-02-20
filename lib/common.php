@@ -4,7 +4,7 @@
  * Common functions for the SoT Web Portal.
  * Load from anywhere with "include_once SOT_LIB.'common.php';"
  *
- * @author  Doug Burner <doug869@users.noreply.github.com> 2014-01-18
+ * @author  Doug Burner 2014-02-20
  *
  */
 
@@ -22,7 +22,8 @@ function combo(thelist, theinput){
 EOS;
 
 function Load_IE8_Hack(){
-    return strpos(" ".$_SERVER['HTTP_USER_AGENT'], 'MSIE 8') ? $GLOBALS['JComboBoxscript'] : "";
+    $Agent = " ".$_SERVER['HTTP_USER_AGENT'];
+    return (strpos($Agent, 'MSIE 7') or strpos($Agent, 'MSIE 8'))? $GLOBALS['JComboBoxscript'] : "";
 }
 
 /**
@@ -489,8 +490,9 @@ function DrawOptionInput($FieldName, &$TableFields, $pBlankDefaults, $CurrentFie
 # Need to use a java hack for IE 8.
 function DrawListInput(&$SOT, $FieldName, $CurrentFieldValue, $DisabledStyle=""){
     $OtherValuesArray = $SOT[DatabaseObject]->Get_Distinct_Values($SOT[TabType], $FieldName);
-
-    if(strpos(" ".$_SERVER['HTTP_USER_AGENT'], 'MSIE 8')){
+    
+    $Agent = " ".$_SERVER['HTTP_USER_AGENT'];
+    if(strpos($Agent, 'MSIE 7') or strpos($Agent, 'MSIE 8')){
         $DOC .= "<input type=\"text\" id=\"{$FieldName}\" name=\"{$FieldName}\" style=\"width: 280px;\" value=\"{$CurrentFieldValue}\" /><BR>\n";
         $DOC .= "<select name=\"{$FieldName}list\" style=\"width: 280px;\" onChange=\"combo(this, '{$FieldName}')\" >\n";
         $DOC .= "<option></option>\n";
