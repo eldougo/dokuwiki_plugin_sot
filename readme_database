@@ -30,7 +30,7 @@ ALTER TABLE servers MODIFY COLUMN `cat` varchar(255) NOT NULL DEFAULT '';
 ALTER TABLE servers MODIFY COLUMN `type` enum('Virtual','Physical','GlobalZone','Cluster') NOT NULL DEFAULT 'Virtual';
 ALTER TABLE servers MODIFY COLUMN `physhost` varchar(255) NOT NULL DEFAULT 'VMware';
 ALTER TABLE servers MODIFY COLUMN `location` varchar(255) NOT NULL DEFAULT '';
-ALTER TABLE servers MODIFY COLUMN `hardware` enum('IBM','Sun','VMware','Cyclades','Del','Not_Listed','TBA') NOT NULL DEFAULT 'VMware';
+ALTER TABLE servers MODIFY COLUMN `hardware` enum('IBM','Sun','VMware','Cyclades','Dell','Not_Listed','TBA') NOT NULL DEFAULT 'VMware';
 ALTER TABLE servers MODIFY COLUMN `model` varchar(255) NOT NULL DEFAULT '';
 ALTER TABLE servers MODIFY COLUMN `serial` varchar(255) NOT NULL DEFAULT '';
 ALTER TABLE servers MODIFY COLUMN `cpu_count` varchar(255) NOT NULL DEFAULT '';

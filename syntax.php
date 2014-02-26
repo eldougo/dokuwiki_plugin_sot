@@ -11,7 +11,6 @@ if(!defined('DOKU_INC')) die();
 
 
 define('PLUGIN_NAME', 	'sot');
-define('SOT_RUN', 		'/usr/bin/sudo /usr/local/admin/bin/');
 define('SOT_DEBUG', 	FALSE);
 ini_set('display_errors', 1);
 
@@ -56,7 +55,7 @@ class syntax_plugin_sot extends DokuWiki_Syntax_Plugin {
 						'date'		=> '2014-02-20',
 						'name'		=> 'SoT Web Portal Plugin',
 						'desc'		=> 'A web portal to the UMO-UNIX SoT database',
-						'url'		=> 'https://github.com/doug869/dokuwiki_plugin_sot');
+						'url'		=> 'https://github.com/eldougo/dokuwiki_plugin_sot');
 	}
 
  	/**
